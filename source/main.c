@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 14:12:46 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/09/30 23:07:14 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/01 23:06:46 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		scroll_down(int x, int y, t_info *info)
 	info->fractal->reallim[1] = realpos + ((info->fractal->reallim[1] - realpos) * 0.95);
 	info->fractal->imlim[0] = impos - ((impos - info->fractal->imlim[0]) * 0.95);
 	info->fractal->imlim[1] = impos + ((info->fractal->imlim[1] - impos) * 0.95);
-	draw_mandelbrot(info);
+	draw_fractal(info);
 }
 
 static int	mouse_press(int button, int x, int y, void *param)
@@ -96,8 +96,12 @@ int			main(int argc, char **argv)
 	fractal.imlim[0] = -2;
 	fractal.imlim[1] = 2;
 	fractal.depth = 20;
+	fractal.type = MANDELBROT;
 	printf("bitsper = %d\nsize_line = %d\nendian = %d\n", temp, info.size_line, temp2);
-	draw_mandelbrot(&info);
+	info.cl = (t_clinfo *)ft_memalloc(sizeof(t_clinfo));
+	if (opencl_init(info.cl) == -1)
+		return (-1);
+	draw_fractal(&info);
 	mlx_hook(info.win, 2, 5, key_press, &info);
 	mlx_hook(info.win, 17, 1L << 17, ft_exit, &info);
 	mlx_hook(info.win, 4, 5, mouse_press, &info);
