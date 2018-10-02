@@ -6,15 +6,23 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/04 22:45:06 by obamzuro          #+#    #+#              #
-#    Updated: 2018/10/01 22:20:52 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/10/02 19:16:05 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRCNAME = 	main.c\
-			mandelbrot.c\
-			opencl_init.c
+			opencl_init.c\
+			opencl_init2.c\
+			mlx_init.c\
+			fractal_init.c\
+			draw_fractal.c\
+			scroll_handlers.c\
+			arrow_handlers.c\
+			depth_handlers.c\
+			fractal_changers.c\
+			fractal_color_changers.c
 
 FLAGS = -g -Wall -Wextra -Werror
 
