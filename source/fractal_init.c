@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 15:20:55 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/10/03 16:16:14 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/03 16:25:14 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	handle_parameter(t_fractal *fractal, char **argv)
 	if (!argv[1])
 		handle_parameter_error();
 	i = -1;
-	while (++i < sizeof(g_fractalcorr))
+	while (++i < sizeof(g_fractalcorr) / sizeof(t_fractal_corr))
 	{
 		if (ft_strequ(argv[1], g_fractalcorr[i].shortcut))
 		{
