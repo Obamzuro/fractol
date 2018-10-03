@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/04 22:45:06 by obamzuro          #+#    #+#              #
-#    Updated: 2018/10/03 15:18:48 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/10/03 16:19:27 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,10 +49,12 @@ lib:
 
 clean:
 	make -C libft clean
+	make -C ftprintf clean
 	rm -rf $(OBJ)
 
 fclean: clean
 	make -C libft fclean
+	make -C ftprintf fclean
 	rm -rf $(NAME)
 
 re: fclean all
