@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 15:20:55 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/10/03 16:25:14 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/03 16:29:10 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		fractal_init(t_fractal *fractal)
 		fractal->reallim[1] = 2;
 		fractal->imlim[0] = -2;
 		fractal->imlim[1] = 2;
-		fractal->depth = 100;
+		fractal->depth = 42;
 	}
 	fractal->ismousesensitive = 1;
 	return (0);
