@@ -6,14 +6,31 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 19:58:56 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/10/02 20:39:03 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/03 15:35:25 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-
-
+/*
+**if (status == CL_BUILD_PROGRAM_FAILURE)
+**{
+**   // Determine the size of the log
+**       size_t log_size;
+**       clGetProgramBuildInfo(cl->program, cl->device,
+**       CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
+**
+**   // Allocate memory for the log
+**       char *log = (char* ) malloc(log_size);
+**
+**   // Get the log
+**       clGetProgramBuildInfo(cl->program, cl->device,
+**       CL_PROGRAM_BUILD_LOG, log_size, log, NULL);
+**
+**   // Print the log
+**       printf("%s\n", log);
+**}
+*/
 
 static int		build_program(t_clinfo *cl)
 {
@@ -25,23 +42,6 @@ static int		build_program(t_clinfo *cl)
 	if (!(cl->program = create_program(source, cl->context)))
 		return (-1);
 	status = clBuildProgram(cl->program, 1, &cl->device, NULL, NULL, NULL);
-if (status == CL_BUILD_PROGRAM_FAILURE)
-{
-   // Determine the size of the log
-       size_t log_size;
-       clGetProgramBuildInfo(cl->program, cl->device,
-       CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
-
-   // Allocate memory for the log
-       char *log = (char* ) malloc(log_size);
-
-   // Get the log
-       clGetProgramBuildInfo(cl->program, cl->device,
-       CL_PROGRAM_BUILD_LOG, log_size, log, NULL);
-
-   // Print the log
-       printf("%s\n", log);
-}
 	if (status != CL_SUCCESS)
 	{
 		ft_fprintf(STDERR_FILENO, "Error: cl_init Build program.\n");

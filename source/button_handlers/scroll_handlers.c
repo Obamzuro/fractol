@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 16:54:56 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/10/02 22:39:45 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/03 15:30:13 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void		scroll_down(int x, int y, t_info *info)
 		((impos - info->fractal->imlim[0]) * 0.95);
 	info->fractal->imlim[1] = impos +
 		((info->fractal->imlim[1] - impos) * 0.95);
-	printf("reallim = %f, %f\nimlim = %f, %f\n", info->fractal->reallim[0], info->fractal->reallim[1], info->fractal->imlim[0], info->fractal->imlim[1]);
 	draw_fractal(info);
 }
 

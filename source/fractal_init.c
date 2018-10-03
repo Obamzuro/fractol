@@ -6,11 +6,51 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 15:20:55 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/10/02 21:23:38 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/03 16:16:14 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	handle_parameter_error(void)
+{
+	ft_fprintf(2, "Usage: ./fractol [type]\n\
+			MANDELBROT        - m,\n\
+			JULIA             - j,\n\
+			BUFFALO           - b,\n\
+			BURNING_SHIP      - bs,\n\
+			TRICORN           - t,\n\
+			SIERPINSKI_CARPET - s\n");
+	exit(EXIT_FAILURE);
+}
+
+t_fractal_corr		g_fractalcorr[] =
+{
+	{"m", MANDELBROT},
+	{"j", JULIA},
+	{"b", BUFFALO},
+	{"bs", BURNING_SHIP},
+	{"t", TRICORN},
+	{"s", SIERPINSKI_CARPET}
+};
+
+void	handle_parameter(t_fractal *fractal, char **argv)
+{
+	size_t				i;
+
+	if (!argv[1])
+		handle_parameter_error();
+	i = -1;
+	while (++i < sizeof(g_fractalcorr))
+	{
+		if (ft_strequ(argv[1], g_fractalcorr[i].shortcut))
+		{
+			fractal->type = g_fractalcorr[i].type;
+			return ;
+		}
+	}
+	handle_parameter_error();
+}
 
 int		fractal_init(t_fractal *fractal)
 {

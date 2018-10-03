@@ -6,7 +6,7 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 14:12:46 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/10/02 21:57:58 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/03 16:02:26 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,12 @@ static int	key_press(int keycode, void *param)
 	info = (t_info *)param;
 	if (keycode == 53)
 		ft_exit(keycode, param);
-	else if (keycode == 13 || keycode == 126)
-		button_up(info);
-	else if (keycode == 1 || keycode == 125)
-		button_down(info);
-	else if (keycode == 0 || keycode == 123)
-		button_left(info);
-	else if (keycode == 2 || keycode == 124)
-		button_right(info);
-	else if (keycode == 69)
-		increase_depth(info);
-	else if (keycode == 78)
-		decrease_depth(info);
 	else if (keycode == 49)
 		info->fractal->ismousesensitive = !info->fractal->ismousesensitive;
+	else if (change_direction(info, keycode))
+		;
+	else if (change_depth(info, keycode))
+		;
 	else if (set_fractal(info, keycode))
 		;
 	else if (set_color(info, keycode))
@@ -77,19 +69,13 @@ int			main(int argc, char **argv)
 	t_info		info;
 
 	(void)argc;
-	(void)argv;
-//	if (!argv[1])
-//	{
-//		write(1, "Usage: ./fractol [Mandelbrot]\n", 30);
-//		return (0);
-//	}
 	ft_bzero(&info, sizeof(t_info));
+	info.fractal = (t_fractal *)ft_memalloc(sizeof(t_fractal));
+	handle_parameter(info.fractal, argv);
+	if (fractal_init(info.fractal))
+		return (-1);
 	info.mlxinfo = (t_mlxinfo *)ft_memalloc(sizeof(t_mlxinfo));
 	if (ft_mlx_init(info.mlxinfo))
-		return (-1);
-	info.fractal = (t_fractal *)ft_memalloc(sizeof(t_fractal));
-	info.fractal->type = SIERPINSKI_CARPET;
-	if (fractal_init(info.fractal))
 		return (-1);
 	info.clinfo = (t_clinfo *)ft_memalloc(sizeof(t_clinfo));
 	if (opencl_init(info.clinfo))

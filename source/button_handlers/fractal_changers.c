@@ -6,49 +6,36 @@
 /*   By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 18:36:57 by obamzuro          #+#    #+#             */
-/*   Updated: 2018/10/02 20:39:00 by obamzuro         ###   ########.fr       */
+/*   Updated: 2018/10/03 15:17:16 by obamzuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		set_mandelbrot(t_info *info)
+static int		is_setfractal_keycode(int keycode)
 {
-	info->fractal->type = MANDELBROT;
-	fractal_init(info->fractal);
-	draw_fractal(info);
-}
-
-static void		set_julia(t_info *info)
-{
-	info->fractal->type = JULIA;
-	fractal_init(info->fractal);
-	draw_fractal(info);
-}
-
-static void		set_sierpinski(t_info *info)
-{
-	info->fractal->type = SIERPINSKI_CARPET;
-	fractal_init(info->fractal);
-	draw_fractal(info);
+	if (keycode >= 18 && keycode <= 23)
+		return (1);
+	return (0);
 }
 
 int				set_fractal(t_info *info, int keycode)
 {
+	if (!is_setfractal_keycode(keycode))
+		return (0);
 	if (keycode == 18)
-	{
-		set_mandelbrot(info);
-		return (1);
-	}
+		info->fractal->type = MANDELBROT;
 	else if (keycode == 19)
-	{
-		set_julia(info);
-		return (1);
-	}
+		info->fractal->type = JULIA;
 	else if (keycode == 20)
-	{
-		set_sierpinski(info);
-		return (1);
-	}
-	return (0);
+		info->fractal->type = BUFFALO;
+	else if (keycode == 21)
+		info->fractal->type = BURNING_SHIP;
+	else if (keycode == 23)
+		info->fractal->type = TRICORN;
+	else if (keycode == 22)
+		info->fractal->type = SIERPINSKI_CARPET;
+	fractal_init(info->fractal);
+	draw_fractal(info);
+	return (1);
 }

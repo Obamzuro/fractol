@@ -6,7 +6,7 @@
 #    By: obamzuro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/04 22:45:06 by obamzuro          #+#    #+#              #
-#    Updated: 2018/10/02 19:16:05 by obamzuro         ###   ########.fr        #
+#    Updated: 2018/10/03 15:18:48 by obamzuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ SRCNAME = 	main.c\
 			mlx_init.c\
 			fractal_init.c\
 			draw_fractal.c\
-			scroll_handlers.c\
-			arrow_handlers.c\
-			depth_handlers.c\
-			fractal_changers.c\
-			fractal_color_changers.c
+			button_handlers/scroll_handlers.c\
+			button_handlers/arrow_handlers.c\
+			button_handlers/depth_handlers.c\
+			button_handlers/fractal_changers.c\
+			button_handlers/fractal_color_changers.c
 
 FLAGS = -g -Wall -Wextra -Werror
 
